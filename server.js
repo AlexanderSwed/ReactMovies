@@ -11,10 +11,10 @@ const app = express();
 mongoose.connect(config.mongoose.uri);
 const db = mongoose.connection;*/
 
-app.use(express.static('public'));
+app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
 });
 
 /*app.get('/', (req,res) => {
