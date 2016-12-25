@@ -6,12 +6,11 @@ const express = require('express')/*,
 const config = require('./config');
 
 const app = express();
-app.use(bodyParser.json());
-app.use(express.static('build'))
-/*mongoose.connect(config.mongoose.uri);
+/*app.use(bodyParser.json());
+mongoose.connect(config.mongoose.uri);
 const db = mongoose.connection;*/
 
-app.use(express.static('build'));
+app.use(express.static('public'));
 
 /*app.get('/', (req,res) => {
     res.send("Use /api/mov for the API");
