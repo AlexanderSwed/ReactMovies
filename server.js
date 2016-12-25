@@ -1,4 +1,5 @@
-const express = require('express')/*,
+const express = require('express'),
+      path = require('path')/*,
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Mov = require('./db/movies')*/;
@@ -11,6 +12,10 @@ mongoose.connect(config.mongoose.uri);
 const db = mongoose.connection;*/
 
 app.use(express.static('public'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 /*app.get('/', (req,res) => {
     res.send("Use /api/mov for the API");
