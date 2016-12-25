@@ -1,19 +1,19 @@
-const express = require('express'),
+const express = require('express')/*,
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    Mov = require('./db/movies');
+    Mov = require('./db/movies')*/;
 
 const config = require('./config');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('build'))
-mongoose.connect(config.mongoose.uri);
-const db = mongoose.connection;
+/*mongoose.connect(config.mongoose.uri);
+const db = mongoose.connection;*/
 
 app.use(express.static('build'));
 
-app.get('/', (req,res) => {
+/*app.get('/', (req,res) => {
     res.send("Use /api/mov for the API");
 });
 
@@ -54,7 +54,7 @@ app.delete('/api/movies/:_id', (req, res) => {
         if (err) { throw new Error(err); }
         res.json(movie);
     });
-});
+});*/
 
 app.listen(config.port, function(){
     console.log(`Express server listening on port ${config.port}`);
