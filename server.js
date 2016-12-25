@@ -1,5 +1,5 @@
 const express = require('express'),
-      path = require('path')/*,
+    path = require('path')/*,
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Mov = require('./db/movies')*/;
@@ -11,10 +11,16 @@ const app = express();
 mongoose.connect(config.mongoose.uri);
 const db = mongoose.connection;*/
 
-app.use(express.static('client/build'));
+app.use(express.static(__dirname + '/client/build'));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve('client/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+});
+
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function(){
+    console.log(`Express server listening on port ${app.get('port')}`);
 });
 
 /*app.get('/', (req,res) => {
@@ -59,9 +65,3 @@ app.delete('/api/movies/:_id', (req, res) => {
         res.json(movie);
     });
 });*/
-
-app.set('port', (process.env.PORT || 5000));
-
-app.listen(app.get('port'), function(){
-    console.log(`Express server listening on port ${app.get('port')}`);
-});
