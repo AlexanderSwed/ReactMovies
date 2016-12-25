@@ -11,7 +11,7 @@
     opacity: 0;
 }
 .homeDiv-shown {
-    animation: homeDiv-shown 0.8s forwards 0.4s;
+    animation: showMain 0.8s forwards 0.4s;
 }
 .content-header {
     padding-left: 20px;
@@ -92,15 +92,6 @@
 }
 .Home-content .movie-cast-title {
     color: white;
-}
-
-@keyframes homeDiv-shown {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 @media only screen and (max-width: 600px) {

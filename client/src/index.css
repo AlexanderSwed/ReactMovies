@@ -125,3 +125,59 @@ button:focus {
         margin: 0 5px;
     }
 }
+
+@keyframes like {
+    0% {
+        color: inherit;
+        transform: scale(1);
+    }
+    30% {
+        color: inherit;
+        transform: scale(0.9);
+    }
+    60% {
+        color: #F44336;
+        transform: scale(1.2);
+    }
+    100% {
+        color: #F44336;
+        transform: scale(1);
+    }
+}
+@keyframes shake {
+    0% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes showMovieCard {
+    to {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+
+@keyframes showMain {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes showHeader {
+    from {
+        transform: translate3d(0,-100%,0);
+    }
+    to {
+        transform: translate3d(0,0,0);
+    }
+}

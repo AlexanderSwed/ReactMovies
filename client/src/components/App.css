@@ -16,20 +16,3 @@
     background-color: #455a64;
     height: 100%;
 }
-
-@keyframes showMain {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@keyframes showHeader {
-    from {
-        transform: translate3d(0,-100%,0);
-    }
-    to {
-        transform: translate3d(0,0,0);
-    }
-}
