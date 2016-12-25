@@ -1,0 +1,228 @@
+.tv-page .card.large.card-seasons {
+    padding-bottom: 0;
+    transition: height 0.4s;
+}
+
+.card.large.card-seasons .card-content {
+    padding-top: 0;
+}
+.tv-page .preloader-container {
+    background-color: #263238;
+}
+.tv-page .dot1, .tv-page .dot2 {
+    background: white;
+}
+.tv-page .card-cast {
+    padding-bottom: 0;
+}
+.tv-page .card-seasons .season-main {
+    background: #263238;
+    position: relative;
+}
+.tv-page .card-seasons .season-content {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    overflow: hidden;
+}
+.tv-page .card-seasons .season-content .season-poster {
+    min-width: 140px;
+    width: 30%;
+    text-align: center;
+}
+.tv-page .card-seasons .season-content .season-poster > img {
+    max-width: 80%;
+    margin: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+.tv-page .card-seasons .season-content .season-info {
+    width: 70%;
+    color: white;
+}
+.tv-page .card-seasons .season-content .center {
+    cursor: pointer;
+}
+.tv-page .card-seasons .season-content .center h5 {
+    margin: 0;
+    color: white;
+}
+.tv-page .card-seasons .season-content .center .material-icons {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+
+.card-seasons .episodes {
+    width: 100%;
+}
+.card-seasons .episodes .collection {
+    border: none;
+    margin: 0;
+    width: 100%;
+}
+.card-seasons .episodes .pagination {
+    display: none;
+    color: white;
+}
+.card-seasons .episodes.show-episodes .collection .collection-item {
+    display: block;
+}
+ .card-seasons .episodes.show-episodes .pagination {
+     display: flex;
+ }
+.card-seasons .collection .collection-item {
+    background: transparent;
+    border-bottom: none;
+    color: white;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: none;
+    animation: showItem 0.4s forwards;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.card-seasons .collection .collection-item .title {
+    font-size: 1.5em;
+}
+
+.card-seasons .collection .collection-item .episode-date {
+    display: inline-block;
+    position: absolute; bottom: 0; right: 0;
+    margin: 15px 10px;
+}
+.card-seasons .collection .item-info {
+    position: absolute;
+    top: 0; left: 0;
+    padding: 20px 10px 0 40px;
+    font-size: 1.2em;
+}
+.card-seasons .episode-cover {
+    filter: brightness(40%);
+    width: 100%;
+    pointer-events: none;
+}
+
+.card-seasons .collection .item-info.no-poster {
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.card-seasons .seasons-toggler-wrapper {
+    position: relative;
+    top: 0; right: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    box-sizing: border-box;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+/*.card-seasons .seasons-toggler-wrapper h5:not(.season-number):before {
+    display: block;
+    position: absolute; top: -5px;
+    height: 2px; width: 100%;
+    content: "";
+    background: white;
+}*/
+.card-seasons .season-number input {
+    padding: 0;
+    margin: 0;
+    width: 2rem;
+    border-bottom: 2px solid #9e9e9e;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 5px;
+    height: 2rem;
+}
+.card-seasons .season-number input:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
+.card-seasons .season-number button {
+    display: none;
+    border-bottom: 2px solid #9e9e9e;
+}
+
+.card-seasons .seasons-toggler-wrapper:hover h6, .card-seasons .season-number input:focus + h6 {
+    opacity: 1; transform: translate3d(0, 80%, 0);
+}
+.card-seasons .seasons-toggler-wrapper h6 {
+    position: absolute; bottom: 0; right: -1rem;
+    transition: 0.4s;
+    opacity: 0; transform: translate3d(0, -30%, 0);
+    pointer-events: none;
+}
+
+.seasons-toggler-wrapper > button {
+    transition: opacity 0.4s;
+}
+.seasons-toggler-wrapper > button:first-child {
+    margin-right: auto;
+}
+.seasons-toggler-wrapper > button:last-child {
+    margin-left: auto;
+}
+
+@media only screen and (max-width : 600px) {
+    .movie-vote, .movie-date {
+        padding-left: 10px;
+    }
+    .movie-vote h5 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+    .card-seasons .collection .item-info {
+        font-size: 1em;
+    }
+    .card-seasons .collection .collection-item .title {
+        font-size: 1.2em;
+    }
+    .tv-page .card-seasons .season-content .season-poster {
+        width: 40%;
+    }
+    .tv-page .card-seasons .season-content .season-info {
+        width: 100%;
+        padding: 0 10px 10px;
+    }
+    .tv-page .card-seasons .season-content .season-info h4 {
+        font-size: 1.4em;
+    }
+    .card-seasons .collection .item-info {
+        padding: 10px 10px 30px 10px;
+    }
+    .card-seasons .collection .item-info p {
+        margin: 0;
+    }    
+}
+
+@media only screen and (max-width : 900px) {
+    .card-seasons .collection .item-info.huge-overview {
+        position: initial;
+        padding: 10px;
+    }
+    .card-seasons .collection .item-info.huge-overview p {
+        margin: 0;
+    }
+    .card-seasons .collection .item-info.huge-overview .title {
+        position: absolute; top: 20px; left: 20px;
+    }
+    .card-seasons .collection .item-info.huge-overview + .episode-date {
+        position: absolute; top: 0; right: 0; bottom: auto;
+    }
+}
+
+@keyframes showItem {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

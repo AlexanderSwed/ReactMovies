@@ -1,0 +1,11 @@
+.main-content .cast-page {
+    padding: 0;
+}
+@media only screen and (max-width : 600px) {
+    .main-content .cast-page .content {
+        padding: 10px;
+    }
+    .main-content .cast-page .content .Search-input {
+        width: 100%; left: 0;
+    }
+}

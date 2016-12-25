@@ -1,0 +1,94 @@
+#structure .AppTree {
+    user-select: none;
+    padding-left: 20px;
+    position: relative;
+}
+
+.AppTree ul,
+.AppTree li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.AppTree input
+{
+    position: absolute;
+    opacity: 0;
+}
+
+.AppTree input + label + ul
+{
+    margin: 0 0 0 22px;
+}
+ 
+.AppTree input ~ ul
+{
+    display: none;
+}
+.AppTree label {
+    padding-left: 18px;
+    box-sizing: border-box;
+}
+.AppTree label,
+.AppTree label::before
+{
+    cursor: pointer;
+    color: #303030;
+}
+ 
+.AppTree input:disabled + label
+{
+    cursor: default;
+    opacity: .6;
+}
+ 
+.AppTree input:checked:not(:disabled) ~ ul
+{
+    display: block;
+}
+ 
+.AppTree label,
+.AppTree a,
+.AppTree label::before
+{
+    display: inline-block;
+}
+.AppTree .tree-leaf {
+    color: #606060;
+    margin-left: 18px;
+}
+
+.AppTree input[type="checkbox"]:checked+label:before {
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-right: 2px solid #e91e63;
+    border-bottom: 2px solid #e91e63;
+}
+.AppTree [type="checkbox"]+label:before {
+    top: 4px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #263238;
+    border-bottom: 2px solid #263238;
+    backface-visibility: hidden;
+    transform: rotate(-45deg);
+    transform-origin: 50% 50%;
+}
+.AppTree input[type="checkbox"]+label:after {
+    display:none;
+}
+
+.AppTree > button {
+    position: absolute;
+    top: 0; right: 20px;
+    color: #303030;
+}
+.AppTree > button:hover {
+    animation: shake 0.4s;
+}

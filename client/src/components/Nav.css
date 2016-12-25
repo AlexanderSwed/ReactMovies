@@ -1,0 +1,31 @@
+.nav-main {
+    box-shadow: none;
+}
+
+.nav-main > .nav-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-main > .nav-wrapper > a {
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+    color: white;
+    opacity: 0.8;
+    padding: 0 20px;
+    min-width: 100px;
+}
+.nav-main > .nav-wrapper > a:hover {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-main > .nav-wrapper > a.active {
+    background-color: rgba(0,0,0,0.2);
+}
+@media only screen and (max-width: 420px) {
+    .nav-main > .nav-wrapper > a {
+        width: 40%;
+    }
+}

@@ -1,0 +1,66 @@
+.About .card.large {
+    opacity: 0;
+    animation: homeDiv-shown 0.8s forwards 0.4s;
+}
+.About .card.large > h3 {
+    margin: 0;
+    padding: 10px 20px;
+}
+.About .card.large > h5 {
+    padding: 10px 10px 0 20px;
+    margin: 0;
+}
+.About button .material-icons {
+    pointer-events: none;
+}
+.About .card.large p {
+    margin: 0; padding: 10px; padding-left: 20px;
+}
+.About .card.large p:last-child {
+    padding-bottom: 20px;
+}
+.About .card.large p .title-info {
+    cursor: context-menu;
+}
+.About .card.large p > i, .About .card.large p > a {
+    color: #e91e63;
+}
+.About .card.large p > button {
+    color: #e91e63;
+}
+.About blockquote {
+    border-color: #e91e63;
+}
+
+.About .collection {
+    margin: 0; border-bottom: none;
+}
+.About .collection .collection-header {
+    padding: 10px;
+}
+.About .collection .collection-item {
+    padding-left: 20px;
+}
+.About .collection a {
+    color: #263238;
+}
+.About .collection .material-icons {
+    margin-left: 10px;
+}
+
+.collection-item.wat {
+    position: relative;
+}
+.collection-item.wat:hover img {
+    opacity: 1;
+}
+.collection-item.wat img {
+    position: absolute;
+    top: -20px;
+    transition: 0.1s;
+    opacity: 0; pointer-events: none;
+}
+
+.About .contacts {
+    font-size: 1.2rem;
+}

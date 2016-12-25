@@ -1,0 +1,89 @@
+.SearchPage {
+    margin-top: 0;
+    margin-bottom: -20px;
+    text-align: center;
+}
+.SearchPage > img {
+    margin: 0 auto;
+    max-width: 100%;
+}
+.SearchPage h3 {
+    text-align: left;
+    margin-top: 0;
+    padding: 20px 20px 10px;
+}
+.search-collection {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.search-collection .c-item {
+    flex: 1 0 auto;
+    width: auto;
+    max-height: 130px;
+    padding: 10px;
+    display: flex; justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    margin: 5px;
+    transition: opacity 0.4s;
+    color: white;
+}
+.search-collection .c-item .title {
+    width: 100%;
+    text-align: center;
+}
+.search-collection .c-item .circle {
+    max-width: 35%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.search-collection .c-item:hover {
+    opacity: 0.95;
+}
+
+.search-collection .c-item img {
+    max-height: 130px;
+    margin-right: auto;
+    margin-left: -10px;
+}
+.card.large.SearchPage {
+    padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .search-collection .c-item {
+        max-width: 400px;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    .search-collection .c-item {
+        max-width: 95%;
+        box-sizing: border-box;
+    }
+    .card-action {
+        padding: 10px 0;
+    }
+    .pagination li {
+        width: 30px; height: 30px;
+        line-height: 30px;
+    }
+    .pagination li:first-child, .pagination li:last-child {
+        position: absolute;
+        width: auto;
+    }
+    .pagination li:first-child {
+        left: 0;
+    }
+    .pagination li:last-child {
+        right: 0;
+    }
+    .pagination li .material-icons {
+        line-height: 30px;
+    }
+}

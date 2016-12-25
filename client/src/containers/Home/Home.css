@@ -1,0 +1,195 @@
+.Home {
+    position: relative;
+    width: 100%; height: 100%;
+    overflow-x: hidden;
+}
+.Home .home-block {
+    width: 100%;
+    height: 30%;
+    color: white;
+    padding: 20px 0;
+    opacity: 0;
+}
+.homeDiv-shown {
+    animation: homeDiv-shown 0.8s forwards 0.4s;
+}
+.content-header {
+    padding-left: 20px;
+}
+
+.Home-content {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: relative;
+}
+.Home .Home-content::-webkit-scrollbar {
+    background: transparent;
+    border: none;
+    height: 10px;
+}
+.Home .Home-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 2px;
+}
+.Home .Home-content::-webkit-scrollbar-track-piece {
+    background: rgba(0,0,0,0.1);
+}
+.Home .Home-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.Home-content > .content-link {
+    margin: 10px;
+    flex: 0 0 auto;
+    width: 280px;
+    transition: 0.5s;
+    text-align: center;
+}
+.link-img {
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transform: scale(0.97);
+    transition: 0.4s;
+    cursor: pointer;
+    height: 420px;
+}
+.link-img > .poster {
+    height: 100%;
+    max-width: 100%;
+    border-radius: 3px;
+}
+.link-img:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transform: scale(1);
+}
+.link-img:hover > .content-badge {
+    opacity: 1;
+}
+.Home .poster-dummy {
+    height: 100%;
+}
+
+.content-badge {
+    position: absolute;
+    pointer-events: none;
+    color: white;
+    top: 0; right: 0;
+    height: 100%; width: 100%;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.content-link > .card-title {
+    width: 80%;
+    margin: 0 auto;
+    color: white;
+}
+.Home-content .movie-cast-title {
+    color: white;
+}
+
+@keyframes homeDiv-shown {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .content-header {
+        font-size: 2em;
+        margin: 10px 0 20px 0;
+    }
+    .Home-content .content-link {
+        width: 185px;
+    }
+    .link-img {
+        height: 277.5px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    /*.Home .home-block:first-child {
+        display: flex;
+        justify-content: space-around;
+    }
+    .home-block:first-child .content-header {
+        margin-top: 0;
+    }
+    .home-block:first-child .Home-content {
+        flex-flow: row wrap;
+        height: 320px;
+        width: 65%;
+        overflow-y: hidden;
+        justify-content: center;
+    }
+    .home-block:first-child .content-link {
+        width: 200px;
+    }
+    .home-block:first-child .content-link .link-img {
+        height: 300px;
+    }*/
+    .Home {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .Home .home-block {
+        box-sizing: border-box;
+        background: white;
+        width: 40%;
+        height: auto;
+        margin: 10px;
+        padding-bottom: 0;
+    }
+    .Home .home-block:first-child, .Home .home-block:nth-child(2) {
+        width: calc(80% + 20px);
+    }
+    .content-header {
+        color: #303030;
+        font-size: 2em;
+        margin: 10px 0 20px 0;
+    }
+    .Home-content .movie-cast-title {
+        color: #303030;
+    }
+    .Home-content .content-link {
+        width: 190px;
+    }
+    .content-link > .card-title {
+        color: #303030;
+    }
+    .Home .Home-content::-webkit-scrollbar-thumb, .movie-cast::-webkit-scrollbar-thumb {
+        background-color: rgba(45, 45, 45, 0.6);
+        border-radius: 0;
+    }
+    .Home .Home-content::-webkit-scrollbar-thumb:hover, .movie-cast::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(45, 45, 45, 1);
+    }
+    .link-img {
+        height: 280px;
+    }
+    .link-img > img {
+        max-height: 100%;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .Home .home-block:first-child, .Home .home-block:nth-child(2) {
+        width: calc(60% + 20px);
+        margin: 10px 20%;
+    }
+    .Home .home-block {
+        width: 30%;
+    }
+}

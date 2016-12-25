@@ -1,0 +1,276 @@
+.movie-page {
+    transition: 0.5s;
+    position: relative;
+    /*background-color: #F9F9F9;*/
+    height: 100%;
+    margin-bottom: -20px;
+}
+
+.main-content .progress {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/*.card-image .img-poster {
+    position: relative; display: block;
+    width: 100%; height: 400px;
+}
+*/
+.card.large.movie {
+    padding-bottom: 62px;
+}
+.main-content .card-image {
+    overflow: visible !important;
+}
+.card-poster {
+    position: relative;
+    height: auto;
+}
+.card-poster > img {
+    height: auto; width: 100%;
+    transition: 5s;
+}
+
+.card-poster .poster-dummy + .poster-info > .movie-title {
+    font-size: 300%;
+}
+.card-poster .poster-info {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    color: white;
+}
+.poster-info .movie-title {
+    font-size: 200%;
+    padding: 10px;
+}
+.card-poster .poster-img img {
+    cursor: pointer;
+}
+.card-poster .poster-img img, .card-poster .poster-img .poster-dummy {
+    position: absolute; top: 40%;
+    margin: 0 auto;
+    width: auto; max-height: 70%;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+.card-poster .poster-img img:hover + .poster-img-like {
+    opacity: 1;
+    transform: translate3d(-50%,-50px,0);
+}
+.card-poster .poster-img-like {
+    position: absolute; bottom: 0; left: 50%;
+    margin: 0 auto;
+    width: 64px; height: 64px;
+    transition: 0.5s;
+    transform: translate3d(-50%,64px,0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    opacity: 0;
+    color: white;
+    background: #455a64;
+    pointer-events: none;
+    border-radius: 100%;
+    padding: 11px;
+}
+.card-poster .poster-img-like i {
+    font-size: 42px;
+}
+.favorite {
+    transition-delay: 0.2s;
+    background: white;
+}
+.favorite i, i.favorite {
+    animation: like 0.6s forwards;
+}
+.movie-vote, .movie-date {
+    position: absolute; bottom: 0;
+    padding: 10px 20px;
+    text-align: center;
+}
+.movie-vote h5, .movie-date h5 {
+    margin: 0;
+}
+.movie-vote h6, .movie-date h6 {
+    margin: 0.2rem;
+}
+.movie-vote {
+    right: 0;
+}
+.movie-vote:hover a > h6:nth-child(2), .movie-vote:hover a > h5 {
+    transform: translateY(0);
+}
+.movie-vote:hover > a > h6:first-child {
+    opacity: 1;
+}
+.movie-vote > a > * {
+    transition: 0.4s;
+}
+.movie-vote > a > h6:nth-child(2), .movie-vote > a > h5 {
+    transform: translateY(-40%);
+}
+.movie-vote > a > h6:first-child {
+    opacity: 0;
+}
+.movie-vote a {
+    color: white;
+}
+.movie-date {
+    font-size: 110%;
+}
+.main-content .movie-page .card-content {
+    padding-top: 50px;
+}
+
+.main-content .movie-page .card-action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+.main-content .movie-page .card-action button {
+    height: 40px; width: 40px;
+    text-align: center;
+    transition: 0.4s;
+    color: #455a64;
+    position: relative;
+}
+.main-content .movie-page .card-action button:hover {
+    animation: shake 0.8s;
+}
+.movie-page .share-tip {
+    position: absolute; bottom: 0;
+    opacity: 0; transition: 0.4s;
+    width: auto; transform: translate3d(0,0,0);
+    pointer-events: none;
+    padding: 5px; color: white;
+}
+.movie-page .card-action i.share-clicked  {
+    animation: shake 0.8s;
+}
+.movie-page .share-tip:after {
+    position: absolute; right: 45px;
+    content: '';
+    width: 0;   
+    height: 0; 
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #455a64;
+}
+.movie-page .share-tip.show-tip {
+    transform: translate3d(0,-100%,0);
+    opacity: 1; pointer-events: all;
+}
+.main-content .movie-page .card-action button > .material-icons{
+    font-size: 30px;
+    line-height: 40px;
+    transition: 0.4s;
+}
+
+.movie-page .card-cast {
+    padding-bottom: 40px;
+}
+.movie-cast {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
+    overflow-x: auto;
+    text-align: center;
+}
+.movie-cast > div {
+    display: block;
+    flex-shrink: 0;
+    width: 150px;
+    margin: 0 10px;
+    color: #303030;
+}
+.movie-cast .photo {
+    width: 130px; height: 130px;
+    background-color: #455a64;
+    text-align: center; line-height: 130px;
+    margin: 0 auto;
+    border-radius: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    transition: 0.4s;
+    transform: scale3d(0.97, 0.97, 0.97);
+}
+.movie-cast .photo:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transform: scale3d(1,1,1);
+}
+.movie-cast-title {
+    font-size: 1.2em;
+}
+.movie-cast-title > p {
+    margin: 5px 0 20px;
+    font-size: 0.8em;
+}
+.movie-page .movie .card-action > a {
+    color: #e91e63 !important;
+}
+
+.shown {
+    transform: translate3d(0,200px,0);
+    opacity: 0;
+    animation: showMovieCard 1s forwards;
+}
+.movie-page .cast-expand .material-icons {
+    transform: rotate(180deg);
+}
+
+@media only screen and (max-width : 600px) {
+    .card-poster .poster-img img, .card-poster .poster-img .poster-dummy {
+        top: 30%; max-height: 80%;
+    }
+    .poster-info .movie-title {
+        font-size: 120%;
+    }
+    .card-poster .poster-dummy + .poster-info > .movie-title {
+        font-size: 120%;
+    }
+    .movie-vote > a > h6:nth-child(2) {
+        transform: translateY(0);
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+    .main-content .movie-page .card-content {
+        padding-top: 70px;
+    }
+}
+
+@keyframes like {
+    0% {
+        color: inherit;
+        transform: scale(1);
+    }
+    30% {
+        color: inherit;
+        transform: scale(0.9);
+    }
+    60% {
+        color: #F44336;
+        transform: scale(1.2);
+    }
+    100% {
+        color: #F44336;
+        transform: scale(1);
+    }
+}
+@keyframes shake {
+    0% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes showMovieCard {
+    to {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}

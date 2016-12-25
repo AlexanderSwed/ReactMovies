@@ -1,0 +1,85 @@
+.Search {
+    margin-bottom: 0;
+}
+.Search-input {
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,.2);
+    position: relative;
+    padding: 10px 40px 10px 60px;
+    transform: rotate3d(1,0,0,90deg);
+    animation: inputRotate 1.4s forwards;
+    animation-delay: 1.1s;
+}
+.Search-input input {
+    margin: 0;
+    border: 0;
+}
+.Search-input input[type="text"]:focus {
+    border: 0;
+    box-shadow: none;
+}
+.Search-input input[type="text"]:focus ~ button {
+    color: #303030;
+}
+.Search-input button {
+    background: transparent;
+    border: none; outline: none;
+    position: absolute;
+    width: 24px; height: 24px;
+    top: 20px;
+    left: 20px;
+    color: #D3D3D3;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0;
+}
+
+.Search-input button.btn-clear {
+    right: 20px;
+    left: auto;
+    color: #303030;
+}
+
+.Search-row {
+    margin-bottom: 0;
+}
+.collection-item {
+    background: none;
+}
+.row.search-suggestions {
+    position: absolute;
+    padding-left: 40px;
+    z-index: 100;
+}
+.search-suggestions > .collection.results {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0;
+}
+
+@media only screen and (max-width : 900px) {
+  .Search-row .Search-input {
+    padding: 10px 10px 10px 40px;
+  }
+  .Search-input button {
+    left: 12px;
+  }
+  .Search-input button.btn-clear {
+    right: 10px;
+  }
+  .Search-input button .search-icon, .Search button .clear {
+    font-size: 22px;
+  }
+  .row.search-suggestions {
+    padding-left: 0.75rem;
+  }
+}
+
+@keyframes inputRotate {
+    from {
+        transform: rotate3d(1,0,0,90deg);
+    }
+    to {
+        transform: rotate3d(1,0,0,0);
+    }
+}

@@ -1,0 +1,199 @@
+.Person .card.large {
+    padding-bottom: 0;
+}
+
+.Person .card.large.main-info {
+    background-color: #263238;
+    min-height: 300px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    align-content: center;
+}
+.Person .card.large .cover {
+    position: absolute; top: 0; left: 0;
+    width: 100%;
+    background: #37474f;
+    pointer-events: none;
+}
+.Person .card.large .cover > img {
+    width: 100%;
+    transform: translateY(-50%) scale(1.25);
+    margin: -20px;
+    filter: blur(16px) brightness(30%);
+}
+
+
+.Person .card-info {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
+    padding: 5px;
+    margin: 10px;
+    position: relative;
+}
+
+.Person .card-info > .photo {
+    position: absolute; left: 5px; bottom: 5px;
+    border-radius: 100%;
+    width: 132px; height: 132px;
+    background: white;
+}
+
+.Person .person-info {
+    margin-left: 142px;
+    width: 100%; height: 132px;
+    color: white;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+}
+.Person .person-info .person-name {
+    font-size: 200%;
+    width: 100%;
+}
+.Person .person-info span {
+    font-size: 1em;
+}
+
+.Person .social-links {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 56px;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+}
+.Person .social-links .social-link {
+    width: 56px; height: 56px;
+    background-color: transparent;
+    background-size: 100%;
+    background-position: center center;
+    display: inline-block;
+    margin: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-100%) translateZ(0) scale(0.95);
+    transition-duration: 0.3s;
+    box-sizing: border-box;
+}
+.Person .card.large:hover .social-link {
+    opacity: 1;
+    transform: translateY(0) translateZ(0) scale(0.95);
+}
+
+.Person .social-links .social-link:hover {
+    transition-delay: 0s !important;
+    transform: translateY(0) translateZ(0) scale(1) !important;
+}
+
+.Person .card.large.bio {
+    padding: 20px;
+}
+.Person .card.large.bio > h3 {
+    margin: -10px 10px 10px -10px;
+}
+
+.Person .card-content .Home-content {
+    margin: 0 -20px;
+    width: calc(100% + 40px);
+}
+
+.Person .content {
+    top: 0;
+}
+.Person .collection {
+    border: none;
+}
+
+.Person .collection .collection-item {
+    color: #303030;
+    min-height: 50px;
+}
+.Person .collection .collection-item .title {
+    font-size: 1.2em;
+}
+.Person .collection .collection-item p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.Person .poster-dummy {
+    height: 100%;
+    background: #455a64;
+}
+
+.Person .card .card-reveal {
+    background: #263238;
+}
+.Person .card .card-reveal .card-title {
+    margin-bottom: 20px;
+    color: white;
+}
+
+
+.Person .card-reveal::-webkit-scrollbar {
+    background: transparent;
+    border: none;
+    width: 8px;
+    margin: 4px;
+}
+.Person .card-reveal::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 2px;
+}
+.Person .card-reveal::-webkit-scrollbar-track-piece {
+    background: rgba(0,0,0,0.1);
+}
+.Person .card-reveal::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.Person button.activator {
+}
+
+@media only screen and (max-width : 600px) {
+    .Person .card.large, .Person .card.large.main-info {
+        min-height: 200px;
+    }
+    .Person .card-info {
+        margin: 5px;
+    }
+    .Person .card-info > .photo {
+        width: 64px; height: 64px;
+    }
+    .Person .person-info {
+        margin-left: 74px;
+        height: 64px;
+    }
+    .Person .person-info .person-name {
+        font-size: 120%;
+    }
+    .Person .person-info span {
+        font-size: 0.9em;
+    }
+    .Person .social-links .social-link {
+        width: 50px; height: 50px;
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(0.95);
+    }
+    .Person .card-reveal {
+        padding: 10px;
+    }
+}
+
+@keyframes showSocialLink {
+    from {
+        opacity: 0;
+        transform: translate3d(0,-100%,0);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0,0,0);
+    }
+}

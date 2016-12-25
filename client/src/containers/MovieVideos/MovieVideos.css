@@ -1,0 +1,22 @@
+.movie-page .card.large.card-videos {
+    padding-bottom: 10px;
+}
+.movie-videos {
+    width: 100%;
+    margin: 20px 0;
+    min-height: 160px;
+}
+.movie-page .card.large.card-videos > h2 {
+    padding-bottom: 0;
+}
+.card-videos .pagination {
+    display: flex;
+    justify-content: center;
+}
+.card-videos .pagination .active {
+    color: white;
+}
+
+.movie-videos iframe {
+    width: 100%;
+}
