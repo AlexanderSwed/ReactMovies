@@ -1,5 +1,4 @@
-const express = require('express'),
-    path = require('path')/*,
+const express = require('express')/*,
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Mov = require('./db/movies')*/;
@@ -13,8 +12,8 @@ const db = mongoose.connection;*/
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+app.get('*', function(req, res){
+  res.sendfile(__dirname + '/public/index.html');
 });
 
 app.set('port', (process.env.PORT || 5000));
