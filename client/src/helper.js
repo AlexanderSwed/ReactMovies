@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 export const API_KEY = "c9896ecb76fe40c3c3c6c3f897eb4325";
 
-export const fetchData = (url) => fetch(url, { method: 'GET', mode: 'cors' }).then(res => res.json());
+export const fetchData = (url) => axios.get(url, { method: 'GET', mode: 'cors' }).then(res => res.data);
 
 export const getDate = (release_date) =>
     {

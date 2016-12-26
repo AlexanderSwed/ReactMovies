@@ -10,10 +10,10 @@ const app = express();
 mongoose.connect(config.mongoose.uri);
 const db = mongoose.connection;*/
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client/build'));
 
 app.get('*', function(req, res){
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendfile(__dirname + '/client/build/index.html');
 });
 
 app.set('port', (process.env.PORT || 5000));
