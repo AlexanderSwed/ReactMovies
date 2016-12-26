@@ -11,12 +11,13 @@ class Person extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-                            showContent: false,
-                            id: props.params.id,
-                            person: {},
-                            imgLoaded: false
-                        };
+        this.state = 
+            {
+                showContent: false,
+                id: props.params.id,
+                person: {},
+                imgLoaded: false
+            };
         this.imgLoaded = this.imgLoaded.bind(this);
         this.mapCollection = this.mapCollection.bind(this);
     }
