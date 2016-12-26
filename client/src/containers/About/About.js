@@ -50,7 +50,7 @@ class About extends React.Component {
         return (
             <div className="col s12 m10 offset-m1 l6 offset-l3 About">
                 <div className="card large">
-                    <h3>Contents</h3>
+                    <h3>Table of Contents</h3>
                     <ul>
                         <li>
                             <ul className="collection">
@@ -148,7 +148,7 @@ class About extends React.Component {
                     type query in search bar and some when he changes a page on search result's page. It is easy to see from Project Tree
                     that these two components lie in different levels of nesting, so it is much easier to have a main state and take necessary properties and actions
                     from those components that needs them.
-                    To make appearance stuff easily I used <a href="http://materializecss.com/">MaterializeCSS</a>.
+                    To not bother about the appearance I used <a href="http://materializecss.com/">MaterializeCSS</a>.
                     </p>
                     <h5>Project Tree</h5>
                     <AppTree toggleTree={this.toggleTree} isTreeExpanded={this.state.isTreeExpanded}/>
