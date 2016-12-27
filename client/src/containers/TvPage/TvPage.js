@@ -118,7 +118,7 @@ class TvPage extends React.Component {
                             <div className="card-content">
                                 <p>{this.state.tv.overview}</p>
                             </div>
-                            <MovieCardAction />
+                            <MovieCardAction title={this.state.tv.title} img={this.state.tv.poster_path}/>
                         </div>
                         { this.state.tv.people.length > 0 ? 
                             (<div className="card large card-cast">

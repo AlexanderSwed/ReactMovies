@@ -95,6 +95,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    margin: 6px 0;
 }
 #newListName {
     padding: 0 56px 0 16px;
@@ -125,7 +126,7 @@
 .movie-page .tip-add #newListName ~ label {
     position: absolute;
     transition: 0.4s;
-    padding: 6px 6px 6px 40px; font-size: 1.1rem;
+    padding: 0 6px 0 40px; font-size: 1.1rem;
     transform: translate3d(0,-100%,0); width: 100%;
     cursor: pointer;
 }
@@ -133,7 +134,7 @@
     font-family: "Material Icons";
     content: "\E145";
     position: absolute;
-    top: 6px; left: 14px;
+    top: -1px; left: 14px;
     margin: 0;
     display: block;
 }
