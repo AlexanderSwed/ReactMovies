@@ -14,7 +14,7 @@
     margin: 0;
     border: 0;
 }
-.Search-input input[type="text"]:focus {
+.Search .Search-input input[type="text"]:focus {
     border: 0;
     box-shadow: none;
 }
