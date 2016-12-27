@@ -53,6 +53,7 @@ class Search extends React.Component {
     componentDidMount() {
         if (this.props.params.query) {
             this.search( this.props.params.query.split('&')[0], this.showData);
+            document.title = "Search";
         }
     }
 

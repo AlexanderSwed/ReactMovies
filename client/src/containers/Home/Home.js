@@ -28,6 +28,10 @@ class Home extends React.Component {
         }
     }*/
 
+    componentDidMount() {
+        document.title = "React Movies";
+    }
+
     render() {
         return (
             <div className="Home">

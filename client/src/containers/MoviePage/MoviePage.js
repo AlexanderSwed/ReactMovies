@@ -4,9 +4,8 @@ import { Link } from "react-router"
 
 import "./MoviePage.css";
 
-import { getFavs, toggleFavMovie } from "../../redux/lists/listsActions";
 import MovieCardImage from "../../components/MovieCardImage"
-import MovieCardAction from "../../components/MovieCardAction"
+import MovieCardAction from "../MovieCardAction/MovieCardAction"
 import MovieActor from "../../components/MovieActor"
 import MovieVideos from "../MovieVideos/MovieVideos"
 
@@ -28,24 +27,21 @@ class MoviePage extends React.Component {
                 release_date: '',
                 cast: [],
                 videos: []
-            },
-            is_favorite: false
+            }
         }
         this.getMovieById(props.params.id);
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onBackdropLoaded = this.onBackdropLoaded.bind(this);
-        this.toggleFavMovie = props.toggleFavMovie.bind(this);
-        this.toggleStateFavorite = this.toggleStateFavorite.bind(this);
     }
 
-    componentWillReceiveProps(props) {
-        if (this.state.id === props.params.id) {
+    componentWillReceiveProps(newProps) {
+        if (this.state.id === newProps.params.id) {
             return;
         }
         else {
             this.setState({
                 isImgLoaded: false, showContent: false, isBackdropLoaded: false,
-                id: props.params.id,
+                id: newProps.params.id,
                 movie: {
                     poster_path: '',
                     title: '',
@@ -55,16 +51,16 @@ class MoviePage extends React.Component {
                     release_date: '',
                     cast: [],
                     videos: []
-                },
-                is_favorite: false
+                }
             });
-            this.getMovieById(props.params.id);
+            this.getMovieById(newProps.params.id);
         }
     }
 
     componentDidUpdate() {
         if (this.state.showContent === false && this.state.isImgLoaded === true && this.state.isBackdropLoaded === true) {
             this.setState({ showContent: true});
+            document.title = this.state.movie.title;
         }
     }
 
@@ -73,7 +69,6 @@ class MoviePage extends React.Component {
         fetchData(url)
         .then(res => this.prepareMovieData(res))
         .then(res => this.setMovieInfo(res))
-        .then(id => this.isFavorite(id))
         .catch(err => {
             console.log(err);
         });
@@ -106,18 +101,6 @@ class MoviePage extends React.Component {
         return movie.id;
     }
 
-    isFavorite(id) {
-        if (this.props.favorites.some((el) => el.id === id)) {
-            this.toggleStateFavorite();
-        };
-    }
-
-    toggleStateFavorite() {
-        this.setState(prevState => ({
-            is_favorite: !prevState.is_favorite
-        }));
-    }
-
     onImageLoaded() {
         this.setState({
             isImgLoaded: true
@@ -129,41 +112,23 @@ class MoviePage extends React.Component {
         });
     }
 
-    toggleFavorite(movie) {
-        this.toggleStateFavorite();
-        let data = Object.assign({}, this.state.movie, {
-            cast: undefined,
-            videos: undefined,
-            release_date: undefined,
-            vote_average: undefined,
-            poster_path: undefined
-        });
-        this.toggleFavMovie(data, this.state.is_favorite);
-    }
-
     render() {
         return (
             <div className="row movie-page">
                 <div className={"progress blue-grey darken-2" + (this.state.showContent ? " hide" : "")}>
                     <div className="indeterminate pink"></div>
                 </div>
-                <div className={"col s12 m10 offset-m1 l6 offset-l3 movie" + (this.state.showContent ? " shown" : " hidden")}>
-                    <div className="card large">
+                <div className={"col s12 m10 offset-m1 l6 offset-l3" + (this.state.showContent ? " shown" : " hidden")}>
+                    <div className="card large movie-main">
                         <MovieCardImage 
                             movie={this.state.movie}
-                            is_favorite={this.state.is_favorite}
                             onImageLoaded={this.onImageLoaded}
                             onBackdropLoaded={this.onBackdropLoaded}
-                            toggleFavorite={() => this.toggleFavorite(this.state.movie)}
                         />
                         <div className="card-content">
                             <p>{this.state.movie.overview}</p>
                         </div>
-                        <MovieCardAction
-                            is_favorite={this.state.is_favorite}
-                            toggleFavorite={() => this.toggleFavorite(this.state.movie)}
-                            url={`http://localhost:3000/movie/${this.state.id}`}
-                        />
+                        <MovieCardAction title={this.state.movie.title} img={this.state.movie.poster_path}/>
                     </div>
                     { this.state.movie.cast.length > 0 ? 
                         (<div className="card large card-cast">
@@ -190,20 +155,11 @@ class MoviePage extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        favorites: state.data.favorites
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getFavs: () => {
-            dispatch(getFavs());
-        },
-        toggleFavMovie: (movie, state) => {
-            dispatch(toggleFavMovie(movie, state));
-        }
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

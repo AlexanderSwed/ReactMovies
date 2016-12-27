@@ -43,11 +43,8 @@ const MovieCardImage = (props) => {
                 <div className="poster-img">
                     {
                         props.movie.poster_path &&
-                        (<img onLoad={props.onImageLoaded} src={props.movie.poster_path} alt={props.movie.title} onClick={props.toggleFavorite ? props.toggleFavorite : null}/>)
+                        (<img onLoad={props.onImageLoaded} src={props.movie.poster_path} alt={props.movie.title} />)
                     }
-                    <div className={"poster-img-like"  + (props.is_favorite ? " favorite" : '')}>
-                        <i className="material-icons center">favorite</i>
-                    </div>
                 </div>
             </div>
         </div>

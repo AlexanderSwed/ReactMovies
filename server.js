@@ -13,7 +13,7 @@ const db = mongoose.connection;*/
 app.use(express.static(__dirname + '/client/build'));
 
 app.get('*', function(req, res){
-  res.sendfile(__dirname + '/client/build/index.html');
+  res.sendFile(__dirname + '/client/build/index.html');
 });
 
 app.set('port', (process.env.PORT || 5000));

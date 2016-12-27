@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux"
 
 import MovieCardImage from "../../components/MovieCardImage"
-import MovieCardAction from "../../components/MovieCardAction"
+import MovieCardAction from "../MovieCardAction/MovieCardAction"
 import MovieActor from "../../components/MovieActor"
 import MovieVideos from "../MovieVideos/MovieVideos"
 import CardSeasons from "./CardSeasons"
@@ -44,6 +44,7 @@ class TvPage extends React.Component {
     componentDidUpdate() {
         if (this.state.showContent === false && this.state.isImgLoaded === true && this.state.isBackdropLoaded === true) {
             this.setState({ showContent: true});
+            document.title = this.state.tv.title;
         }
     }
 
@@ -107,8 +108,8 @@ class TvPage extends React.Component {
                     <div className="indeterminate pink"></div>
                 </div>
                 { this.state.tv.title &&
-                    <div className={"col s12 m10 offset-m1 l6 offset-l3 movie" + (this.state.showContent ? " shown" : " hidden")}>
-                        <div className="card large">
+                    <div className={"col s12 m10 offset-m1 l6 offset-l3" + (this.state.showContent ? " shown" : " hidden")}>
+                        <div className="card large movie-main">
                             <MovieCardImage 
                                 movie={this.state.tv}
                                 onImageLoaded={this.onImageLoaded}
@@ -117,9 +118,7 @@ class TvPage extends React.Component {
                             <div className="card-content">
                                 <p>{this.state.tv.overview}</p>
                             </div>
-                            <MovieCardAction
-                                url={`http://localhost:3000/tv/${this.state.id}`}
-                            />
+                            <MovieCardAction />
                         </div>
                         { this.state.tv.people.length > 0 ? 
                             (<div className="card large card-cast">

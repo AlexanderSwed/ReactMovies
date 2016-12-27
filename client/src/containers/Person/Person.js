@@ -29,6 +29,7 @@ class Person extends React.Component {
     componentDidUpdate() {
         if (this.state.imgLoaded && !this.state.showContent) {
             this.showContent();
+            document.title = this.state.person.name;
         }
     }
 

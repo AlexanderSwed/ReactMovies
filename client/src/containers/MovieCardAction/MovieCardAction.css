@@ -1,0 +1,152 @@
+.main-content .movie-page .card-action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+.main-content .movie-page .card-action > button {
+    height: 40px; width: 40px;
+    text-align: center;
+    transition: 0.4s;
+    color: #455a64;
+    position: relative;
+}
+.movie-page .tip {
+    position: absolute; bottom: 0;
+    opacity: 0; transition: 0.4s;
+    width: auto; transform: translate3d(0,0,0);
+    pointer-events: none;
+    color: white;
+    max-width:300px;
+    background-color: rgba(38, 50, 56, 0.9);
+}
+.movie-page .tip:after {
+    position: absolute; right: 50px; bottom: -8px;
+    content: '';
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(38, 50, 56, 0.9);
+}
+.movie-page .tip.show-tip {
+    transform: translate3d(0,-60px,0);
+    opacity: 1; pointer-events: all;
+}
+.movie-page .tip-add {
+    padding: 5px 10px;
+}
+.movie-page .tip-add:after {
+    right: 12px; bottom: -8px;
+}
+.tip input {
+    color: white;
+    margin: 0;
+    padding: 6px;
+    border: none;
+    font-size: 1rem;
+    height: auto; box-sizing: border-box;
+    max-width:100%;
+    overflow-x:auto;
+}
+.tip-share {
+    padding: 20px 0 10px;
+}
+.tip-share label {
+    position: absolute; top: 5px;
+    left: 5px;
+    padding: 2px;
+    background: white;
+    color: #303030;
+    opacity: 0;
+    transition: 0.4s;
+}
+.tip-share > button {
+    width: 35px; height: 35px;
+}
+.tip-share > button:hover {
+    opacity: 0.9;
+}
+.movie-page .card-action .share-clicked  {
+    animation: shake 0.8s;
+}
+.movie-page .tip-add {
+    min-width: 200px;
+    padding: 0 0 10px;
+}
+.movie-page .tip-add label {
+    font-size: 1.1rem;
+    color: white;
+    display: block;
+    height: auto;
+    padding: 6px 0 6px 40px;
+}
+.movie-page .tip-add label:before, .movie-page .tip-add label:after {
+    margin-top: 8px;
+    margin-left: 12px;
+}
+.movie-page .tip-add label:hover, .movie-page .tip-add button:hover {
+    background-color: rgba(38, 50, 56, 1);
+}
+.main-content .movie-page .card-action button > .material-icons{
+    font-size: 30px;
+    line-height: 40px;
+    transition: 0.4s;
+}
+.new-list {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+#newListName {
+    padding: 0 56px 0 16px;
+    opacity: 0;
+    width: 100%;
+}
+#newListName:focus {
+    opacity: 1;
+}
+#newListName ~ button {
+    display: block;
+    opacity: 0;
+    font-size: 0.9rem;
+    padding: 6px;
+    width: 56px;
+    text-align: center;
+    position: absolute;
+    right: 0; top: 0;
+}
+#newListName:focus ~ label {
+    opacity: 0; transform: translate3d(100%,-100%,0);
+    color: white; pointer-events: none;
+}
+#newListName:focus ~ button {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+.movie-page .tip-add #newListName ~ label {
+    position: absolute;
+    transition: 0.4s;
+    padding: 6px 6px 6px 40px; font-size: 1.1rem;
+    transform: translate3d(0,-100%,0); width: 100%;
+    cursor: pointer;
+}
+#newListName ~ label:before {
+    font-family: "Material Icons";
+    content: "\E145";
+    position: absolute;
+    top: 6px; left: 14px;
+    margin: 0;
+    display: block;
+}
+
+.movie-page .dummy-tip {
+    height: 100%; width: 100%;
+    text-align: center;
+    padding: 6px;
+    background: #e91e63;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.3s;
+}

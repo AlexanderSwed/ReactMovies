@@ -33,6 +33,7 @@ class About extends React.Component {
                 this.components.forEach( el => el.removeAttribute('style'));
             });
         } );
+        document.title = "About"
     }
 
     toggleTree() {
@@ -95,8 +96,8 @@ class About extends React.Component {
                     <p>
                     First of all, sorry for my English. Hope, everything will be clear for you.<br/>
                     Also, before we start, sorry for horizontal scroll on the home page.
-                    While creating the home page, I was thinking about mobile devices. What's can be better, smoother and more native
-                    than native horizontal scroll? With horizontal scroll all items are easily accessible. Try it on your phone.
+                    While creating I was thinking about mobile devices. What's can be better, smoother and more native
+                    than native scroll? With horizontal scroll all items are easily accessible. Try it on your phone.
                     This issue will be resolved later.<br/>
                     And sorry for the joke, Ben, I like your work, it's just a joke.
                     </p>

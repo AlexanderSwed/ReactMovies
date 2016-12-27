@@ -5,6 +5,11 @@ import MovieVideos from "../MovieVideos/MovieVideos"
 import "./Lists.css"
 
 class Lists extends React.Component {
+
+    componentDidMount() {
+        document.title = "Lists"
+    }
+
     render() {
         return (
             <div className="col s12 m10 offset-m1 l6 offset-l3 card-videos Lists">
