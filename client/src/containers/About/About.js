@@ -127,7 +127,7 @@ class About extends React.Component {
                         </video>
                         It's quite similar to how you can search for the movies or TVs on the person's page.
                     </p>
-                    <h5>Okay, but why I should use it?</h5>
+                    <h5>Okay, but why should I use it?</h5>
                     <p>Frankly, you shouldn't. This project had only one goal - understand React and get an experience in React + Redux. Once I found
                     <a href="https://www.themoviedb.org/" target="_blank"> The Movie DB API</a> and ideas like bricks began to build this project in my mind.
                     It takes a lot of time as questions have been raised not only about the appearance, but in functionality as well. Firstly, inspired by the idea
@@ -159,7 +159,7 @@ class About extends React.Component {
                     Also, I decided to put all reducer stuff in a separate folder, instead of keeping them in the same folder with the containers that are used them.
                     </p>
                     <h5>Noteworthy components</h5>
-                    <p><i>SearchBar and SearchPage</i> - component that returns search bar that lies in header. 
+                    <p><i>SearchBar</i> - component that returns search bar that lies in header. 
                     This component keeps its own state with query string and search suggestions that are passed to SearchSuggestions component. 
                     When a user click Enter button, he dispatches search action that fetches data from API and set it to the state. 
                     While fetching, user is redirected to the search page, where all results from redux state will be shown as soon as they will be ready.</p>
