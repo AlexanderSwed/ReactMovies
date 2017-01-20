@@ -38,9 +38,9 @@ export const toggleReveal = (e) => {
 
 export const loadLocalStorageState = () => {
     try {
-        const state = localStorage.getItem('state');
+        const state = localStorage.getItem('favs');
         if (state === null) return undefined;
-        return JSON.parse(state);
+        return JSON.parse(state).favs;
     } catch(error) {
         return undefined;
     }
