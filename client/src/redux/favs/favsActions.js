@@ -1,0 +1,1 @@
+export const toggleFav = (movie) => ({ type: 'TOGGLE_FAV', payload: movie } );

@@ -1,4 +1,4 @@
-.tv-page .card.large.card-seasons {
+.movie-page .card.large.card-seasons {
     padding-bottom: 0;
     transition: height 0.4s;
 }
@@ -6,47 +6,44 @@
 .card.large.card-seasons .card-content {
     padding-top: 0;
 }
-.tv-page .preloader-container {
+.movie-page .preloader-container {
     background-color: #263238;
 }
-.tv-page .dot1, .tv-page .dot2 {
+.movie-page .dot1, .movie-page .dot2 {
     background: white;
 }
-.tv-page .card-cast {
-    padding-bottom: 0;
-}
-.tv-page .card-seasons .season-main {
+.movie-page .card-seasons .season-main {
     background: #263238;
     position: relative;
 }
-.tv-page .card-seasons .season-content {
+.movie-page .card-seasons .season-content {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
     overflow: hidden;
 }
-.tv-page .card-seasons .season-content .season-poster {
+.movie-page .card-seasons .season-content .season-poster {
     min-width: 140px;
     width: 30%;
     text-align: center;
 }
-.tv-page .card-seasons .season-content .season-poster > img {
+.movie-page .card-seasons .season-content .season-poster > img {
     max-width: 80%;
     margin: 10px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
-.tv-page .card-seasons .season-content .season-info {
+.movie-page .card-seasons .season-content .season-info {
     width: 70%;
     color: white;
 }
-.tv-page .card-seasons .season-content .center {
+.movie-page .card-seasons .season-content .center {
     cursor: pointer;
 }
-.tv-page .card-seasons .season-content .center h5 {
+.movie-page .card-seasons .season-content .center h5 {
     margin: 0;
     color: white;
 }
-.tv-page .card-seasons .season-content .center .material-icons {
+.movie-page .card-seasons .season-content .center .material-icons {
     margin-top: -10px;
     margin-bottom: 20px;
     transition: 0.4s;
@@ -122,13 +119,6 @@
     align-items: center;
     font-size: 1.5rem;
 }
-/*.card-seasons .seasons-toggler-wrapper h5:not(.season-number):before {
-    display: block;
-    position: absolute; top: -5px;
-    height: 2px; width: 100%;
-    content: "";
-    background: white;
-}*/
 .card-seasons .season-number input {
     padding: 0;
     margin: 0;
@@ -182,14 +172,14 @@
     .card-seasons .collection .collection-item .title {
         font-size: 1.2em;
     }
-    .tv-page .card-seasons .season-content .season-poster {
+    .movie-page .card-seasons .season-content .season-poster {
         width: 40%;
     }
-    .tv-page .card-seasons .season-content .season-info {
+    .movie-page .card-seasons .season-content .season-info {
         width: 100%;
         padding: 0 10px 10px;
     }
-    .tv-page .card-seasons .season-content .season-info h4 {
+    .movie-page .card-seasons .season-content .season-info h4 {
         font-size: 1.4em;
     }
     .card-seasons .collection .item-info {

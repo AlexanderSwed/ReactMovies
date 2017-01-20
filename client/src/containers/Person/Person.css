@@ -125,6 +125,7 @@
 .Person .poster-dummy {
     height: 100%;
     background: #455a64;
+    opacity: 1;
 }
 
 .Person .card .card-reveal {

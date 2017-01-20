@@ -1,0 +1,26 @@
+.Favs {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap; align-items: flex-start;
+}
+.Favs .fav-card {
+    width: 48%; height: auto;
+}
+.Favs .fav-card p {
+    color: #282828;
+    font-size: 18px;
+}
+.Favs .card-image button {
+    position: absolute;
+    top: 10px; right: 10px;
+    color: white;
+}
+.Favs .poster-dummy {
+    height: 200px;
+}
+.Favs .card-content {
+    display: block;
+}
+.Favs .card h2 {
+    margin: 20px;
+}

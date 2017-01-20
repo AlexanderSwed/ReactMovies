@@ -1,4 +1,8 @@
-import { API_KEY, fetchData } from "../../helper.js"
+import { normalize } from "normalizr";
+
+import { INIT_SEARCH_STATE } from "./searchReducer"
+import { API_KEY, fetchData } from "../../helper"
+import { movies } from "../../schema"
 
 const setSearchMovies = (data) => {
     return {
@@ -7,40 +11,17 @@ const setSearchMovies = (data) => {
     }
 }
 
-const prepareData = (response, query) => {
-    if (response.results.length > 0) {
-        let moviesData = response.results.map(el => {
-            return {
-                id: el.id,
-                media_type: el.media_type,
-                name: el.title ? el.title : el.name,
-                poster_path: el.poster_path ? `https://image.tmdb.org/t/p/w640${el.poster_path}` : null,
-                profile_path: el.profile_path ? `https://image.tmdb.org/t/p/w132_and_h132_bestv2/${el.profile_path}` : null,
-                release_date: el.release_date ? el.release_date.split('-')[0] : null
-            }
-        });
-        return {
-            moviesData,
-            total_pages: response.total_pages,
-            total_results: response.total_results,
-            page: response.page,
-            query
-        }
-    }
-    else return {
-        total_results: 0,
-        query
-    }
-};
-
 export function search(query, callback = () => {}) {
-    let request = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${query}`;
+    let request = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
     return function (dispatch) {
         return fetchData(request)
-                .then(res => prepareData(res, query))
-                .then(res => {
-                    dispatch(setSearchMovies(res))
+                .then( res => {
+                    let data = normalize(res, { results: movies });
+                    data.result.query = query;
+                    return data;
+                    
                 })
+                .then( data => dispatch(setSearchMovies(data)) )
                 .then(callback)
                 .catch(err => {
                     console.log(err);
@@ -51,12 +32,6 @@ export function search(query, callback = () => {}) {
 export function cleanSearchState() {
     return {
         type: "SEARCH",
-        payload: {
-                total_pages: 0,
-                moviesData: [],
-                total_results: 0,
-                page: 1,
-                query: ""
-            }
+        payload: INIT_SEARCH_STATE
     };
 }

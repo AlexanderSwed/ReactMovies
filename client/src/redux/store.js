@@ -2,10 +2,15 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import reducer from "./reducer";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose,
-        middleware = [thunk];
+import throttle from "lodash/throttle";
+import { setLocalStorageState } from "../helper"
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));/*
-const store =  createStore(reducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));*/
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose, middleware = [thunk];
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));
+
+store.subscribe( throttle( () => {
+    setLocalStorageState( { favs: store.getState().favs } )
+}, 1000) )
 
 export default store;

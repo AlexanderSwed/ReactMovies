@@ -1,13 +1,18 @@
 import { combineReducers } from "redux"
-
-import listsReducer from "./lists/listsReducer";
-import searchReducer from "./search/searchReducer";
 import { routerReducer } from 'react-router-redux';
 
+import favsReducer from "./favs/favsReducer";
+import { loadLocalStorageState } from "../helper";
+import searchReducer from "./search/searchReducer";
+
+const INIT_STATE = {
+    favs: loadLocalStorageState
+}
+
 const reducer = combineReducers({
-    data: listsReducer,
+    favs: favsReducer,
     routing: routerReducer,
     search: searchReducer
-});
+}, INIT_STATE);
 
 export default reducer;

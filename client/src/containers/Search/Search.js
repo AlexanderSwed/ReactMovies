@@ -2,8 +2,10 @@ import React from "react"
 import { Link, browserHistory } from "react-router"
 import {connect} from "react-redux"
 
-import { cleanSearchState, search, changePage } from "../../redux/search/searchActions";
+import { search, cleanSearchState } from "../../redux/search/searchActions";
+import { toggleFav } from "../../redux/favs/favsActions"
 import Pagination from "../../components/Pagination"
+import SearchCollection from "./SearchCollection"
 
 import "./Search.css"
 import nullResults from "./410.png";
@@ -22,13 +24,12 @@ class Search extends React.Component {
             showContent: !props.query,
             paginationLinks: []
         }
-        this.search = props.search;
         this.changePage = this.changePage.bind(this);
         this.showData = this.showData.bind(this);
+        this.toggleFavorite = this.toggleFavorite.bind(this);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (Object.is(nextState, this.state)) return false;
         return nextProps.params.query !== this.props.query || !Object.is(nextState, this.state);
     }
 
@@ -39,20 +40,20 @@ class Search extends React.Component {
                     showContent: false,
                     paginationLinks: this.getPaginationLinks(nextProps.total_pages,nextProps.params.query.split('&')[0])
                 });
-                this.search(nextProps.params.query, this.showData);
+                this.props.search(nextProps.params.query, this.showData);
             }
             else {
                 this.setState({
                     showContent: false
                 });
-                this.search(nextProps.params.query, this.showData);
+                this.props.search(nextProps.params.query, this.showData);
             }
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.params.query) {
-            this.search( this.props.params.query.split('&')[0], this.showData);
+            this.props.search( this.props.params.query.split('&')[0], this.showData);
             document.title = "Search";
         }
     }
@@ -81,12 +82,17 @@ class Search extends React.Component {
     }
 
     showData() {
-        setTimeout(() => {
-            this.setState({showContent: true})
-        }, 1000);
+        this.setState({showContent: true})
+    }
+
+    toggleFavorite(event, movie) {
+        event.preventDefault();
+        event.target.classList.toggle('like');
+        this.props.toggleFav(movie);
     }
 
     render() {
+        if (this.props.total_results === -1 && this.props.query === "") return null;
         if ((this.props.total_results === 0 || this.props.query === "") && this.state.showContent) {
             return (
                 <div className="card large SearchPage">
@@ -95,13 +101,13 @@ class Search extends React.Component {
             );
         }
         return (
-                <div className="card large SearchPage" style={ this.state.showContent ? {} : {paddingBottom: 0} }>
+                <div className="card large SearchPage" style={ this.state.showContent ? {} : { paddingBottom: 0 } }>
                     <div className={"progress white" + (this.state.showContent ? " hide" : "")}>
                         <div className="indeterminate pink"></div>
                     </div>
-                    <h3>Total results: {this.props.total_results}</h3>
+                    <h3>Total results: {this.props.total_results > 0 ? this.props.total_results : "?"}</h3>
                     {
-                        this.state.paginationLinks && this.state.paginationLinks.length > 0 && (this.state.showContent || this.props.page !== 1) ?
+                        this.state.paginationLinks && this.state.paginationLinks.length > 1 && (this.state.showContent || this.props.page !== 1) ?
                             (<Pagination
                                     page={this.props.page}
                                     total_pages={this.props.total_pages}
@@ -111,18 +117,7 @@ class Search extends React.Component {
                                 />) : ""
                     }
                     { this.props.movies && this.state.showContent ? 
-                        (<ul className="search-collection">
-                            { this.props.movies.map( (el, i) => 
-                                (
-                                    <Link to={`/${el.media_type}/${el.id}`} className="c-item blue-grey darken-3" key={i}>
-                                        {el.profile_path || el.poster_path ?
-                                            <img src={el.poster_path ? el.poster_path : el.profile_path} alt="" className={el.profile_path ? "circle" : ""} />:
-                                            <div className="circle blue-grey darken-2"></div>}
-                                        <span className="title">{el.name} {el.release_date ? ` (${el.release_date})` : ""}</span>
-                                    </Link>
-                                ) )}
-                            
-                        </ul>) : ""
+                        <SearchCollection movies={this.props.movies} favs={ this.props.favs } toggleFavorite={this.toggleFavorite}/> : ""
                     }
                     
                 </div>
@@ -132,21 +127,13 @@ class Search extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.search.moviesData,
-        total_pages: state.search.total_pages,
-        total_results: state.search.total_results,
-        page: state.search.page,
-        query: state.search.query
-    };
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        search: (query, callback) => {
-            dispatch(search(query, callback));
-        },
-        cleanSearchState: () => { dispatch(cleanSearchState())},
-        changePage: (str, dirrection) => { dispatch(changePage(str, dirrection))}
+        movies: state.search.entities.movies,
+        total_pages: state.search.result.total_pages,
+        total_results: state.search.result.total_results,
+        page: state.search.result.page,
+        query: state.search.result.query,
+        favs: state.favs
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, {search, cleanSearchState, toggleFav})(Search);

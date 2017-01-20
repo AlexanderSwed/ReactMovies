@@ -2,8 +2,6 @@ import React from "react";
 import {connect} from "react-redux"
 import { browserHistory } from "react-router"
 
-import { search, cleanSearchState } from "../../redux/search/searchActions";
-
 import { API_KEY, fetchData } from "../../helper.js"
 import SearchSuggestions from "./SearchSuggestions"
 import "./SearchBar.css"
@@ -94,8 +92,10 @@ class SearchBar extends React.Component {
         }
         browserHistory.push(`/search/${this.state.query}`);
         clearTimeout(this.timeout);
-        this.props.search(this.state.query);
-        this.clearQuery();
+        this.setState({
+            suggestions: [],
+            total_results: 0
+        });
     }
 
     render() {
@@ -130,21 +130,8 @@ class SearchBar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.search.moviesData,
-        total_pages: state.search.total_pages,
-        total_results: state.search.total_results,
-        page: state.search.page,
-        query: state.search.query
+        query: state.search.result.query
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        search: (query) => {
-            dispatch(search(query));
-        },
-        cleanSearchState: () => { dispatch(cleanSearchState())}
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps)(SearchBar);

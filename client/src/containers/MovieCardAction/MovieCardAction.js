@@ -34,23 +34,16 @@ class MovieCardAction extends React.Component {
             url: window.location.href,
             title: props.title,
             ...getLinks(url, title, img),
-            isShareTipShowed: false, isAddTipShowed: false,
-            userLists: [{id: "someId", name: "Favorites"}],
-            newListName: ""
+            isShareTipShowed: false
         };
         this.shareLink = this.shareLink.bind(this);
         this.showTip = this.showTip.bind(this);
-        this.onListCreate = this.onListCreate.bind(this);
-        this.handleNameInput = this.handleNameInput.bind(this);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.isFavorite !== this.props.isFavorite) return true;
         if (!nextProps.title && nextProps.title === this.state.title ) return false;
         else return true;
-    }
-
-    componentDidMount() {
-        this.dummyTip = document.querySelector('.dummy-tip');
     }
 
     componentWillReceiveProps(newProps) {
@@ -61,9 +54,7 @@ class MovieCardAction extends React.Component {
             url: window.location.href,
             title: newProps.title,
             ...getLinks(url, title, img),
-            newListName: "",
-            isShareTipShowed: false, isAddTipShowed: false,
-            userLists: [{id: "someId", name: "Favorites"}]
+            isShareTipShowed: false
         })
     }
 
@@ -75,25 +66,6 @@ class MovieCardAction extends React.Component {
     shareLink(url) {
         window.open(url,"_blank", 'toolbar=0,location=0,menubar=0,directories=0,scrollbars=0,width=548,height=325');
         return false;
-    }
-
-    handleNameInput(e) {
-        this.setState({newListName: e.target.value})
-    }
-
-    onListCreate(e) {
-        e.preventDefault();
-        if (this.state.newListName) {
-            let date = new Date();
-            this.setState({
-                userLists: [...this.state.userLists, {id: date, name: this.state.newListName}],
-                newListName: ""
-            });
-            if (!this.dummyTip.style.opacity) {
-                this.dummyTip.style.opacity = 1;
-                this.dummyTip.style.pointerEvents = "all";
-            }
-        }
     }
 
     render() {
@@ -117,28 +89,9 @@ class MovieCardAction extends React.Component {
                         <img src={share_t} alt="Telegram"/>
                     </button>
                 </div>
-                <button type="button" className={this.state.isAddTipShowed ? "share-clicked" : ""} onClick={() => this.showTip(false)}>
-                    <i className="material-icons center" title="Add to a list">add</i>
+                <button type="button" className={ this.props.isFavorite ? "like" : ""} onClick={this.props.toggleFavorite}>
+                    <i className="material-icons center" title="Add to a list">favorite</i>
                 </button>
-                <div className={"tip tip-add" + ( this.state.isAddTipShowed ? " show-tip" : "" )}>
-                    { this.state.userLists.map( el => 
-                        [<input type="checkbox" id={el.id}/>,<label htmlFor={el.id}>{el.name}</label>]
-                    ) }
-                    <form className="new-list" onSubmit={this.onListCreate}>
-                        <input
-                            type="text"
-                            id="newListName"
-                            autoComplete="off"
-                            value={this.state.newListName}
-                            placeholder="New list"
-                            onChange={this.handleNameInput}
-                        /><label htmlFor="newListName">Create a new list</label>
-                        <button type="submit">Create</button>
-                    </form>
-                    <div className="dummy-tip" onClick={
-                        () => {this.dummyTip.style.opacity = 0;this.dummyTip.style.pointerEvents = "none";}}
-                    >Indeed, in reality nothing has changed. This feature isn't ready yet.<br/>¯\_(ツ)_/¯<br/>OK</div>
-                </div>
             </div>
         );
     }

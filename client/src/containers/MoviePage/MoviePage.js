@@ -1,15 +1,16 @@
 import React from "react";
 import {connect} from "react-redux"
-import { Link } from "react-router"
 
 import "./MoviePage.css";
 
 import MovieCardImage from "../../components/MovieCardImage"
 import MovieCardAction from "../MovieCardAction/MovieCardAction"
-import MovieActor from "../../components/MovieActor"
+import MovieCardCast from "../../components/MovieCardCast"
 import MovieVideos from "../MovieVideos/MovieVideos"
+import CardSeasons from "./CardSeasons"
 
-import {API_KEY, fetchData, getDate } from "../../helper.js"
+import {API_KEY, fetchMovie, prepareToStore } from "../../helper.js"
+import { toggleFav } from "../../redux/favs/favsActions"
 
 class MoviePage extends React.Component {
 
@@ -18,20 +19,15 @@ class MoviePage extends React.Component {
         this.state = {
             isImgLoaded: false, showContent: false, isBackdropLoaded: false,
             id: props.params.id,
-            movie: {
-                poster_path: '',
-                title: '',
-                overview: '',
-                vote_average: '',
-                backdrop_path: '',
-                release_date: '',
-                cast: [],
-                videos: []
-            }
+            movie: {}, isFavorite: false
         }
-        this.getMovieById(props.params.id);
         this.onImageLoaded = this.onImageLoaded.bind(this);
         this.onBackdropLoaded = this.onBackdropLoaded.bind(this);
+        this.toggleFavorite = this.toggleFavorite.bind(this);
+    }
+
+    componentWillMount() {
+        this.getMovieById(this.props);
     }
 
     componentWillReceiveProps(newProps) {
@@ -43,14 +39,6 @@ class MoviePage extends React.Component {
                 isImgLoaded: false, showContent: false, isBackdropLoaded: false,
                 id: newProps.params.id,
                 movie: {
-                    poster_path: '',
-                    title: '',
-                    overview: '',
-                    vote_average: '',
-                    backdrop_path: '',
-                    release_date: '',
-                    cast: [],
-                    videos: []
                 }
             });
             this.getMovieById(newProps.params.id);
@@ -60,45 +48,27 @@ class MoviePage extends React.Component {
     componentDidUpdate() {
         if (this.state.showContent === false && this.state.isImgLoaded === true && this.state.isBackdropLoaded === true) {
             this.setState({ showContent: true});
-            document.title = this.state.movie.title;
+            document.title = this.state.movie.title || this.state.movie.name;
         }
     }
 
-    getMovieById(id) {
-        let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits,videos`;
-        fetchData(url)
-        .then(res => this.prepareMovieData(res))
+    getMovieById() {
+        let url = `https://api.themoviedb.org/3/${this.props.route.media_type}/${this.props.params.id}?api_key=${API_KEY}&append_to_response=credits,videos${this.props.route.append ? `,${this.props.route.append}` : ""}`;
+        fetchMovie(url)
         .then(res => this.setMovieInfo(res))
         .catch(err => {
             console.log(err);
         });
     }
 
-    prepareMovieData(movie) {
-        let date = movie.release_date ? getDate(movie.release_date) : null;
-        let link = `http://www.imdb.com/title/${movie.imdb_id}`,
-            backdrop_path = movie.backdrop_path ? `https://image.tmdb.org/t/p/w640${movie.backdrop_path}` : null,
-            poster_path = movie.poster_path ? `https://image.tmdb.org/t/p/w640${movie.poster_path}` : null;
-        let cast = movie.credits.cast.slice(0, 6);
-        let result = {
-            title: movie.title,
-            vote_average: movie.vote_average,
-            overview: movie.overview,
-            release_date: date,
-            id: movie.id,
-            link, backdrop_path, poster_path,
-            cast,
-            videos: movie.videos.results
-        }
-        return result;
-    }
-    setMovieInfo(movie) {
+    setMovieInfo(data) {
+        let movie = data.entities.movies[data.result];
         this.setState({
             movie,
+            isFavorite: Boolean(this.props.favs.findIndex(el => el.id === movie.id) > -1),
             isImgLoaded: !movie.poster_path,
             isBackdropLoaded: !movie.backdrop_path
         });
-        return movie.id;
     }
 
     onImageLoaded() {
@@ -111,6 +81,10 @@ class MoviePage extends React.Component {
             isBackdropLoaded: true
         });
     }
+    toggleFavorite() {
+        this.setState({ isFavorite: !this.state.isFavorite });
+        this.props.toggleFav(prepareToStore(this.state.movie));
+    }
 
     render() {
         return (
@@ -119,35 +93,33 @@ class MoviePage extends React.Component {
                     <div className="indeterminate pink"></div>
                 </div>
                 <div className={"col s12 m10 offset-m1 l6 offset-l3" + (this.state.showContent ? " shown" : " hidden")}>
-                    <div className="card large movie-main">
-                        <MovieCardImage 
-                            movie={this.state.movie}
-                            onImageLoaded={this.onImageLoaded}
-                            onBackdropLoaded={this.onBackdropLoaded}
-                        />
-                        <div className="card-content">
-                            <p>{this.state.movie.overview}</p>
-                        </div>
-                        <MovieCardAction title={this.state.movie.title} img={this.state.movie.poster_path}/>
-                    </div>
-                    { this.state.movie.cast.length > 0 ? 
-                        (<div className="card large card-cast">
-                            <h2>Cast:</h2>
-                            <div className="movie-cast">
-                                { this.state.movie.cast.map((el, i) => (<MovieActor key={i} id={el.id} profile_path={el.profile_path} name={el.name} character={el.character}/>) )}
+                    { this.state.movie &&
+                        <div className="card large movie-main">
+                            <MovieCardImage 
+                                movie={this.state.movie}
+                                onImageLoaded={this.onImageLoaded}
+                                onBackdropLoaded={this.onBackdropLoaded}
+                            />
+                            <div className="card-content">
+                                <p>{this.state.movie.overview}</p>
                             </div>
-                            {
-                                this.state.movie.cast.length < 6 ?
-                                "" :
-                                <div className="card-action">
-                                    <Link to={`/movie/${this.state.id}/cast`}>View all</Link>
-                                </div>
-                            }
-                        </div>)
+                            <MovieCardAction
+                                title={this.state.movie.title}
+                                img={this.state.movie.poster_path}
+                                toggleFavorite={this.toggleFavorite}
+                                isFavorite={this.state.isFavorite}
+                                />
+                        </div>
+                    }
+                    { this.state.movie && this.state.movie.credits && this.state.movie.credits.cast.length > 0 ? 
+                        <MovieCardCast id={this.state.id} cast={this.state.movie.credits.cast} />
                         : ""
                     }
-                    {this.state.movie.videos.length > 0 ? 
-                        <MovieVideos videos={this.state.movie.videos} />
+                    { this.state.movie.seasons &&
+                        <CardSeasons seasons={this.state.movie.seasons} id={this.state.id}/>
+                    }
+                    {this.state.movie.videos && this.state.movie.videos.results.length > 0 ? 
+                        <MovieVideos videos={this.state.movie.videos.results} />
                     : ""}
                 </div>
             </div>);
@@ -155,11 +127,9 @@ class MoviePage extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        favs: state.favs
+    };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
+export default connect(mapStateToProps, {toggleFav})(MoviePage);

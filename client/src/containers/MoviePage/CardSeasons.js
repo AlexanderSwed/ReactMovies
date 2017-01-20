@@ -4,6 +4,8 @@ import Pagination from "../../components/Pagination"
 
 import {API_KEY, fetchData, getDate } from "../../helper.js"
 
+import "./CardSeasons.css";
+
 const split_episodes = (episodes) => {
     return episodes.reduce((array, episode, i) => {
                 if (i % 20 === 0 && i !== 0) array.push([]);
